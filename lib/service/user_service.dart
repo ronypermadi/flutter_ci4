@@ -13,4 +13,18 @@ class UserApiService {
       return null;
     }
   }
+
+  Future<bool> createUser(User data) async {
+    final response = await client.post("$baseUrl/user/create", body: {
+      "fullname": data.fullName,
+      "grade": data.grade,
+      "gender": data.gender,
+      "phone": data.phone
+    });
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
