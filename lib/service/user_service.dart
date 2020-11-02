@@ -4,7 +4,7 @@ import 'package:flutter_ci4/model/user.dart';
 import 'package:http/http.dart' show Client;
 
 class UserApiService {
-  final String baseUrl = "http://localhost:8080/";
+  final String baseUrl = "https://ci4.ronypermadi.com/";
   Client client = Client();
 
   Future<List<User>> getUsers() async {
