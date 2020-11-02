@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ci4/model/user.dart';
 import 'package:flutter_ci4/screen/user_create.dart';
+import 'package:flutter_ci4/screen/user_detail.dart';
 import 'package:flutter_ci4/service/user_service.dart';
 import 'package:flutter_ci4/util/capitalize.dart';
 
@@ -64,7 +65,13 @@ class _HomeState extends State<Home> {
       itemBuilder: (context, index) {
         User user = users[index];
         return ListTile(
-          onTap: () {},
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                        DetailUser(id: user.id, key: ValueKey(user.id))));
+          },
           leading: Icon(Icons.people),
           title: Text(user.fullName),
           subtitle: Text(capitalize(user.gender)),

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_ci4/model/user.dart';
 import 'package:http/http.dart' show Client;
 
@@ -25,6 +27,16 @@ class UserApiService {
       return true;
     } else {
       return false;
+    }
+  }
+
+  Future<User> getUserBy(int id) async {
+    final response = await client.get("$baseUrl/user/getUserBy/$id");
+    if (response.statusCode == 200) {
+      final data = User.fromJson(json.decode(response.body));
+      return data;
+    } else {
+      return null;
     }
   }
 }
