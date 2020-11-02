@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ci4/model/user.dart';
+import 'package:flutter_ci4/screen/user_edit.dart';
 import 'package:flutter_ci4/service/user_service.dart';
 import 'package:flutter_ci4/util/capitalize.dart';
 
@@ -39,7 +40,17 @@ class _DetailUserState extends State<DetailUser> {
           },
         ),
         actions: <Widget>[
-          IconButton(icon: Icon(Icons.edit), onPressed: () {}),
+          IconButton(
+              icon: Icon(Icons.edit),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                        FormEditUser(user: _user, id: widget.id),
+                  ),
+                );
+              }),
           IconButton(
             icon: Icon(Icons.delete),
             onPressed: () {},

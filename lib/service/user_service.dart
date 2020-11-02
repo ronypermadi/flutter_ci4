@@ -39,4 +39,18 @@ class UserApiService {
       return null;
     }
   }
+
+  Future<bool> updateUser({int id, User data}) async {
+    final response = await client.post("$baseUrl/user/update/$id", body: {
+      "fullname": data.fullName,
+      "grade": data.grade,
+      "gender": data.gender,
+      "phone": data.phone
+    });
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
