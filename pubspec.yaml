@@ -48,7 +48,6 @@ flutter:
   assets:
   - assets/images/pria.png
   - assets/images/wanita.png
-  - assets/images/sekolah.png 
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

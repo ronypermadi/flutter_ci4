@@ -124,7 +124,7 @@ class _DetailUserState extends State<DetailUser> {
                       ),
                       ListTile(
                         leading: Icon(Icons.school),
-                        title: Text(_user.grade.toUpperCase()),
+                        title: Text(_user.jenjang.toUpperCase()),
                         subtitle: const Text('Jenjang'),
                       ),
                     ],

@@ -78,7 +78,7 @@ class _HomeState extends State<Home> {
           trailing: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              Text(user.grade.toUpperCase()),
+              Text(user.jenjang.toUpperCase()),
               Text(user.phone)
             ],
           ),

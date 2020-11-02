@@ -20,7 +20,7 @@ class _FormEditUserState extends State<FormEditUser> {
   UserApiService apiService;
 
   static const genders = User.genders; // from domain
-  static const grades = User.grades; // from domain
+  static const jenjangs = User.jenjangs; // from domain
 
   // upayakan menggunakan global key
   final _formKey = GlobalKey<FormState>();
@@ -32,11 +32,11 @@ class _FormEditUserState extends State<FormEditUser> {
   // focus node
   FocusNode _fullnameFocus, _phoneFocus;
   // variabel value null
-  String _fullname, _gender, _grade, _phone;
+  String _fullname, _gender, _jenjang, _phone;
 
   TextEditingController _fullnameController, _phoneController;
 
-  final List<DropdownMenuItem<String>> _gradeItems = grades
+  final List<DropdownMenuItem<String>> _jenjangItems = jenjangs
       .map((String val) => DropdownMenuItem<String>(
             value: val,
             child: Text(val.toUpperCase()),
@@ -56,7 +56,7 @@ class _FormEditUserState extends State<FormEditUser> {
       _fullname = widget.user.fullName;
       _phone = widget.user.phone;
       _gender = widget.user.gender;
-      _grade = widget.user.grade;
+      _jenjang = widget.user.jenjang;
 
       _fullnameController.value = TextEditingValue(
           text: widget.user.fullName,
@@ -189,13 +189,13 @@ class _FormEditUserState extends State<FormEditUser> {
                   Padding(
                     padding: const EdgeInsets.only(left: 5.0),
                     child: DropdownButton(
-                      value: _grade,
+                      value: _jenjang,
                       hint: Text('Pilih jenjang'),
-                      items: _gradeItems,
+                      items: _jenjangItems,
                       isExpanded: true,
                       onChanged: (String value) {
                         setState(() {
-                          _grade = value;
+                          _jenjang = value;
                         });
                       },
                     ),
@@ -218,13 +218,13 @@ class _FormEditUserState extends State<FormEditUser> {
               form.save(); // required to trigger onSaved props
               User _user = User();
 
-              if (_grade == null) {
+              if (_jenjang == null) {
                 _showSnackBar("Jenjang tidak boleh kosong");
               } else if (_gender == null) {
                 _showSnackBar("Gender tidak boleh kosong");
               } else {
                 _user.fullName = _fullname;
-                _user.grade = _grade;
+                _user.jenjang = _jenjang;
                 _user.gender = _gender;
                 _user.phone = _phone;
                 print(_user);

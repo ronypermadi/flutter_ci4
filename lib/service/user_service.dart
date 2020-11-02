@@ -4,7 +4,7 @@ import 'package:flutter_ci4/model/user.dart';
 import 'package:http/http.dart' show Client;
 
 class UserApiService {
-  final String baseUrl = "https://ci4.ronypermadi.com/";
+  final String baseUrl = "https://ci4.ronypermadi.com/public/";
   Client client = Client();
 
   Future<List<User>> getUsers() async {
@@ -19,7 +19,7 @@ class UserApiService {
   Future<bool> createUser(User data) async {
     final response = await client.post("$baseUrl/user/create", body: {
       "fullname": data.fullName,
-      "grade": data.grade,
+      "jenjang": data.jenjang,
       "gender": data.gender,
       "phone": data.phone
     });
@@ -43,7 +43,7 @@ class UserApiService {
   Future<bool> updateUser({int id, User data}) async {
     final response = await client.post("$baseUrl/user/update/$id", body: {
       "fullname": data.fullName,
-      "grade": data.grade,
+      "jenjang": data.jenjang,
       "gender": data.gender,
       "phone": data.phone
     });
