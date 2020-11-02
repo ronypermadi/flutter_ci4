@@ -53,4 +53,14 @@ class UserApiService {
       return false;
     }
   }
+
+  Future deleteUser({int id}) async {
+    // ganti dengan method get juga gpph
+    final response = await client.delete("$baseUrl/user/delete/$id");
+    if (response.statusCode == 200) {
+      return 1;
+    } else {
+      return 0;
+    }
+  }
 }

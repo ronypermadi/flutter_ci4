@@ -19,6 +19,8 @@ class _DetailUserState extends State<DetailUser> {
   UserApiService apiService;
   // create variabel _user untuk menampung model User
   User _user;
+  // scaffold key
+  final GlobalKey<ScaffoldState> _scaffoldkey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -27,9 +29,17 @@ class _DetailUserState extends State<DetailUser> {
     super.initState();
   }
 
+  _showSnackBar(message) {
+    final snackbar = SnackBar(
+      content: Text(message),
+    );
+    _scaffoldkey.currentState.showSnackBar(snackbar);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldkey,
       // header
       appBar: AppBar(
         title: Text("Detail User"),
@@ -53,7 +63,19 @@ class _DetailUserState extends State<DetailUser> {
               }),
           IconButton(
             icon: Icon(Icons.delete),
-            onPressed: () {},
+            onPressed: () {
+              final onSuccess = (Object obj) async {
+                _showSnackBar("Deleted user successfully");
+                await Future.delayed(Duration(seconds: 2))
+                    .then((Object obj) => Navigator.pop(context));
+              };
+              final onError =
+                  (Object obj) => _showSnackBar("Deleted user failed");
+              apiService
+                  .deleteUser(id: widget.id)
+                  .then(onSuccess)
+                  .catchError(onError);
+            },
           ),
         ],
       ),
